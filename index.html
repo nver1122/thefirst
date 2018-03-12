@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+   <style>
+       .borderr{
+           width: 100px;
+           height: 100px;
+           background: #3d3d3d;
+           position: absolute;
+           transition: 0s;
+       }
+       .apple{
+           width: 100px;
+           height: 100px;
+           background: red;
+           position: absolute;
+       }
+       .borderr:hover{
+           background: black;
+           animation: rotater 2s  infinite;
+           animation-delay: 0;
+           transition: 0s;
+           
+       }
+       @keyframes rotater{
+           0%{
+               transform: rotate(0deg);
+           }
+           100%{
+               transform: rotate(360deg);
+                
+           }
+       }
+    </style>
+    <div class="borderr" id="borderr"></div>
+    <div class="apple"></div>
+    <script src="jquery-3.3.1.min.js"></script>
+    <script>
+        $( document ).ready(function() {
+            var acx = Math.floor(Math.random(800)*(1+800)) ,
+                acy = Math.floor(Math.random() * (1 + 800)) ,
+                acx_index=acx,
+                acy_index=acy;
+            console.log(acx_index);
+
+            function apple(){
+                acx = 0;
+                acy = 0;
+//                var acx = Math.floor(Math.random() * (1 + 800)) ,
+//                acy = Math.floor(Math.random() * (1 + 800)) ,
+//                acx_index=acx,
+//                acy_index=acy;
+                alert("go");
+            }
+        
+        
+            console.log( acx,acy );
+            $('.apple').css("top",acy);
+            $('.apple').css("left",acx);
+            
+            var x = 0,
+                y = 0,
+                z = 0,
+                xr = 0,
+                yr = 0,
+                zr = 0,
+                borderr = document.getElementsByClassName('borderr');
+        document.onkeydown = function(e){
+            if(e.keyCode ===37) { //left key
+                x-=10;
+                xr=true;
+            }
+            else if(e.keyCode ===38) y-=10;//up key
+            else if(e.keyCode ===39) x+=10;//right key
+            else if(e.keyCode ===40) y+=10;//down key
+            document.querySelector('.borderr').style.left = x+'px'; 
+            document.querySelector('.borderr').style.top = y+'px'; 
+            if(xr===true) {document.querySelector('.borderr').style.background = 'red';
+                    }
+            if(x >=acx_index) {
+                alert("you win");
+                acx_index = 0;
+                apple();
+        }
+        }
+        });
+
+    </script>
+</body>
+</html>
